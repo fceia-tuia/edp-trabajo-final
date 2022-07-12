@@ -25,12 +25,13 @@ do
             MOST_CHARACTERS=${#WORD}
         fi
 
-        CHARACTER_LENGTH_ACCUMULATOR=CHARACTER_LENGTH_ACCUMULATOR+${#WORD}
+        CHARACTER_LENGTH_ACCUMULATOR=$(expr $CHARACTER_LENGTH_ACCUMULATOR + ${#WORD})
     done;
 done < text.txt
 
-WORD_AVERAGE=CHARACTER_LENGTH_ACCUMULATOR/$(wc -w text.txt)
+WORD_COUNT=$(cat text.txt | wc -w)
+WORD_AVERAGE=$( expr $CHARACTER_LENGTH_ACCUMULATOR / $WORD_COUNT)
 
 echo "The word with the MOST characters has $MOST_CHARACTERS characters."
 echo "The word with the LEAST characters has $LEAST_CHARACTERS characters."
-echo "The AVERAGE character length is $MOST_CHARACTERS characters."
+echo "The AVERAGE character length is $WORD_AVERAGE characters."
