@@ -14,7 +14,7 @@ do
 
         if [ ${#WORD} -gt 3 ]
         then 
-            if [[ $WORD =~ [,]$ ]]
+            if [[ $WORD =~ [,.]$ ]]
             then
                 WORD=${WORD::-1}
             fi 
