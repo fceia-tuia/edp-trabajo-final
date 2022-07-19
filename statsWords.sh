@@ -1,5 +1,7 @@
 #!/bin/bash
 
+FILE=$1
+
 FIRST_ITERATION=true
 
 while read -ra LINE; 
@@ -27,7 +29,7 @@ do
 
         CHARACTER_LENGTH_ACCUMULATOR=$(expr $CHARACTER_LENGTH_ACCUMULATOR + ${#WORD})
     done;
-done < text.txt
+done < $FILE
 
 WORD_COUNT=$(cat text.txt | wc -w)
 WORD_AVERAGE=$( expr $CHARACTER_LENGTH_ACCUMULATOR / $WORD_COUNT)
