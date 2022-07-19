@@ -1,17 +1,19 @@
 #!/bin/bash
 
+FILE=$1
+
 FIRST_ITERATION=true
 WORD_COUNTER=0
 
 while read -ra LINE; 
 do
     for WORD in "${LINE[@]}";
-    do  
-        echo $WORD
+    do
+#         echo $WORD
 
         if [[ $WORD =~ ^.*[\.][" "]?$ ]]
         then
-            echo "----------------sentence reached----------------"
+#             echo "----------------sentence reached----------------"
             if [ $FIRST_ITERATION = true ]
             then
                 SENTENCE_COUNTER=1
@@ -39,14 +41,12 @@ do
         fi        
 
         let WORD_COUNTER++
-
     done;
+done < $FILE
 
-done < text.txt
+WORD_AVERAGE=$( expr $WORD_ACCUMULATOR / $SENTENCE_COUNTER )
 
-WORD_AVERAGE=$( expr $WORD_ACCUMULATOR / $SENTENCE_COUNTER)
-
-echo "The number of lines is $SENTENCE_COUNTER"
+#echo "The number of lines is $SENTENCE_COUNTER"
 echo "The sentence with the MOST words has $MOST_WORDS words."
-echo "The word with the LEAST characters has $LEAST_WORDS characters."
-echo "The AVERAGE character length is $WORD_AVERAGE characters."
+echo "The word with the LEAST characters has $LEAST_WORDS words."
+echo "The AVERAGE character length is $WORD_AVERAGE words."
