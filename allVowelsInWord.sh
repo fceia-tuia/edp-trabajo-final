@@ -1,27 +1,37 @@
 #!/bin/bash
+
 TEXT=$1
 
-WORDS_WITH_ALL_VOWELS=()
+declare -A WORDS_WITH_ALL_VOWELS
 
-
-for WORD in $TEXT
+while read -ra LINE; 
 do
-      
-    if [[ $(echo grep -i a $WORD | grep -i e | grep -i i | grep -i o | grep -i u) ]]
-    then
-        
-        WORDS_WITH_ALL_VOWELS+=("$WORD")
-        
-    fi
+    for WORD in "${LINE[@]}";
+    do    
+        if [[ $WORD =~ [,.]$ ]]
+        then
+            WORD=${WORD::-1}
+        fi 
+        # WORD=${WORD/[áÁ]/a}
+        # WORD=${WORD/[éÉ]/e}
+        # WORD=${WORD/[íÍ]/i}
+        # WORD=${WORD/[óÓ]/o}
+        # WORD=${WORD/[úÚ]/u}
 
+       if [[ $(echo $WORD | grep -i [aá] | grep -i [eé] | grep -i [ií] | grep -i [oó] | grep -i [uú]) ]]
+        then        
+                if [[ $( echo WORDS_WITH_ALL_VOWELS[$WORD]) ]]
+                then
+                    WORDS_WITH_ALL_VOWELS[$WORD]=$( expr ${WORDS_WITH_ALL_VOWELS[$WORD]} + 1 )
+                else
+                    WORDS_WITH_ALL_VOWELS[$WORD]=1
+                fi
+        fi
+    done;
+done < $TEXT
+
+IFS=$'\n' WORDS_WITH_ALL_VOWELS_SORTED=($(sort <<<"${!WORDS_WITH_ALL_VOWELS[*]}"))
+
+for KEY in "${WORDS_WITH_ALL_VOWELS_SORTED[@]}"; do
+    echo "$KEY (${WORDS_WITH_ALL_VOWELS[$KEY]})"
 done
-
-# WORDS_IN_ALPHABETIC_ORDER=($(echo ${WORDS_WITH_ALL_VOWELS[@]} | sort))
-# echo ${WORDS_IN_ALPHABETIC_ORDER[@]}
-
-# sorted=($(sort <<< ${WORDS_WITH_ALL_VOWELS[@]}))
-# echo "${sorted[@]}"
-
-echo 'Todas las palabras' ${WORDS_WITH_ALL_VOWELS[@]}
-
-
