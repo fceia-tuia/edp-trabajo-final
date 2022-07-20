@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEXT=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+TEXT=$(cat "$1" | tr '[:upper:]' '[:lower:]')
 
 declare -A WORDS
 
