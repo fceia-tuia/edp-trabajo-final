@@ -6,7 +6,7 @@ read SELECTION
 SELECTION=$(echo $SELECTION | tr '[:lower:]' '[:upper:]')
 
 # [[ $SELECTION -ne "O" || $SELECTION -ne "P" ]] && exit 1
-TEXT=$(cat test.txt)
+TEXT=$(cat $1)
 ELEMENTS=()
 case $SELECTION in
     [Oo])
