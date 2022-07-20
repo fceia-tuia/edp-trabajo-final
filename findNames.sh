@@ -8,6 +8,10 @@ while read -ra LINE;
 do
     for WORD in "${LINE[@]}";
     do
+        if [[ $WORD =~ [,.]$ ]]
+        then
+            WORD=${WORD::-1}
+        fi
  
         if [[ $WORD =~ ^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÑ][a-zäëïöüáéíóúáéíóúâêîôûàèìòùñ]+$ ]]
         then
