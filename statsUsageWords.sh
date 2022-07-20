@@ -1,11 +1,12 @@
 #!/bin/bash
 
-TEXT=${1,,}
+TEXT=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+
 declare -A WORDS
 
 for WORD in $TEXT
 do
-    CHARACTER_COUNT=`echo -n $WORD | wc -m`
+    CHARACTER_COUNT=$(echo -n $WORD | wc -m)
 
     if [ $CHARACTER_COUNT -ge 4 ]; then
             WORDS[$WORD]=$((${WORDS[$WORD]} + 1))
