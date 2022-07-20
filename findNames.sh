@@ -1,10 +1,28 @@
 #!/bin/bash
 
-WORD=$1
+FILE=$1
 
-if [[ $WORD =~ ^([A-Z]{1}||[ÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÑ]{2})[a-zäëïöüáéíóúáéíóúâêîôûàèìòùñ]+$ ]]
-then
-    echo "It's an own name"
-else
-    echo "It isn't an own name"
-fi
+NAMES=()
+
+while read -ra LINE; 
+do
+    for WORD in "${LINE[@]}";
+    do
+ 
+        if [[ $WORD =~ ^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÑ][a-zäëïöüáéíóúáéíóúâêîôûàèìòùñ]+$ ]]
+        then
+            if [[ " ${NAMES[*]} " =~ " $WORD " ]]; then
+             continue
+            fi
+                
+            NAMES+=( $WORD )
+        fi
+    done;
+done < $FILE
+
+IFS=$'\n' NAMES_SORTED=($(sort <<<"${NAMES[*]}"))
+
+for WORD in ${NAMES_SORTED[@]}
+do
+    echo $WORD
+done
