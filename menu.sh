@@ -15,8 +15,8 @@ do
         
     ;; 
     "Find names")
-        echo ""
-    opción elegida  ;; 
+    
+    ;; 
     "Sentence length stats")
         
     ;; 
