@@ -16,9 +16,9 @@ FILE=$1
 FIRST_ITERATION=true
 WORD_COUNTER=0
 
-while read -ra LINE; 
+while read -ra LINE
 do
-    for WORD in "${LINE[@]}";
+    for WORD in "${LINE[@]}"
     do
         if [[ $WORD =~ ^.*[\.][" "]?$ ]]
         then
@@ -49,12 +49,11 @@ do
         fi        
 
         let WORD_COUNTER++
-    done;
+    done
 done < $FILE
 
 WORD_AVERAGE=$( expr $WORD_ACCUMULATOR / $SENTENCE_COUNTER )
 
-#echo "The number of lines is $SENTENCE_COUNTER"
 echo "The sentence with the MOST words has $MOST_WORDS words."
 echo "The word with the LEAST characters has $LEAST_WORDS words."
 echo "The AVERAGE character length is $WORD_AVERAGE words."
