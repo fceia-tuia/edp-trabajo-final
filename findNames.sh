@@ -1,5 +1,12 @@
 #!/bin/bash
 
+### In this script, first of all we define an empty array to save words later.
+### Next, we use a text from an enter file and read its lines. 
+### Then, we normalize every present word in each line and we use a regex to evaluate if it is an own name.
+### If it is and the current own name is not in the name's array, we added to it.
+### Finally, we sort the array of names and print each element that it has.
+
+
 FILE=$1
 
 NAMES=()
