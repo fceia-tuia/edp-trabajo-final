@@ -18,9 +18,9 @@ FILE=$1
 
 FIRST_ITERATION=true
 
-while read -ra LINE; 
+while read -ra LINE
 do
-    for WORD in "${LINE[@]}";
+    for WORD in "${LINE[@]}"
     do
         if [[ $WORD =~ [,.]$ ]]
         then
@@ -47,7 +47,7 @@ do
         fi
 
         CHARACTER_LENGTH_ACCUMULATOR=$(expr $CHARACTER_LENGTH_ACCUMULATOR + ${#WORD})
-    done;
+    done
 done < $FILE
 
 WORD_COUNT=$(cat text.txt | wc -w)
