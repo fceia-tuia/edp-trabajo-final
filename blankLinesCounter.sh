@@ -1,5 +1,5 @@
 #!/bin/bash
 
-TEXT=$1
+TEXT=$(cat $1)
 
 grep -cvE '[^[:space:]]' <<< "$TEXT"
