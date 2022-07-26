@@ -17,17 +17,18 @@ read SELECTION
 
 SELECTION=$(echo $SELECTION | tr '[:lower:]' '[:upper:]')
 
-# [[ $SELECTION -ne "O" || $SELECTION -ne "P" ]] && exit 1
+[[ $SELECTION -ne "O" || $SELECTION -ne "P" ]] && exit 1
 TEXT=$(cat $1)
 ELEMENTS=()
 case $SELECTION in
     [Oo])
         DELIMITER='. '
         TEXT_COPY=$TEXT$DELIMITER
-        while [[ $TEXT_COPY ]]; do
-            ELEMENTS+=("${TEXT_COPY%%"$DELIMITER"*}");
-            TEXT_COPY=${TEXT_COPY#*"$DELIMITER"};
-        done;
+        while [[ $TEXT_COPY ]] 
+        do
+            ELEMENTS+=("${TEXT_COPY%%"$DELIMITER"*}")
+            TEXT_COPY=${TEXT_COPY#*"$DELIMITER"}
+        done
         ;;
     [Pp])
         readarray -t ELEMENTS <<< $TEXT
