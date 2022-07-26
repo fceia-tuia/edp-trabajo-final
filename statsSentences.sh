@@ -1,5 +1,16 @@
 #!/bin/bash
 
+### This script takes the path of the text file to be procesed as an argument and returns a string
+### showing the amount of words in the sentence with the most, the least and the average words. 
+### To achive this, the file is inserted in a while loop to iterate through its lines and a for loop 
+### to iterate over the words. Then we check if the word ends in a period and if not, we add 1 to the 
+### word counter. If the previous condition is reached it means that we alredy got a sentence. If
+### it's the first sentence we save in variables the first counting of words and set the sentence count
+### to 1. If not, we compare the current counting with the amount of words stored in the variables
+### corresponding with the least and the most amount of words in a sentence. Also we add 1 to the sentence
+### counter and the amount of words to the word total, before restarting the word counter.  
+### Finally we calculate the average and then the results are printed.
+
 FILE=$1
 
 FIRST_ITERATION=true
@@ -9,11 +20,8 @@ while read -ra LINE;
 do
     for WORD in "${LINE[@]}";
     do
-#         echo $WORD
-
         if [[ $WORD =~ ^.*[\.][" "]?$ ]]
         then
-#             echo "----------------sentence reached----------------"
             if [ $FIRST_ITERATION = true ]
             then
                 SENTENCE_COUNTER=1
