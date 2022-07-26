@@ -13,29 +13,30 @@ FILE=$1
 
 MAIL_ADRESS=()
 
-while read -ra LINE; 
+while read -ra LINE
 do
-    for WORD in "${LINE[@]}";
+    for WORD in "${LINE[@]}"
     do
         if [[ " ${MAIL_ADRESS[*]} " =~ " $WORD " ]]; then
             continue
         fi
         
-        if [[ $WORD =~ [,.]$ ]]
-        then
+        if [[ $WORD =~ [,.]$ ]]; then
             WORD=${WORD::-1}
         fi 
         
-        if [[ $WORD =~ ^[a-zA-Z0-9\!\#$%\&\'*+-/\=?^_\`\{|\}~]+@[a-z]+\.com(\.[a-z]+)*$ ]]
-        then            
+        if [[ $WORD =~ ^[a-zA-Z0-9\!\#$%\&\'*+-/\=?^_\`\{|\}~]+@[a-z]+\.com(\.[a-z]+)*$ ]]; then
             MAIL_ADRESS+=( $WORD )
         fi
-    done;
+    done
 done < $FILE
 
+PREV_IFS=$IFS
 IFS=$'\n' MAIL_ADRESS_SORTED=($(sort <<<"${MAIL_ADRESS[*]}"))
 
 for WORD in ${MAIL_ADRESS_SORTED[@]}
 do
     echo $WORD
 done
+
+IFS=$PREV_IFS
