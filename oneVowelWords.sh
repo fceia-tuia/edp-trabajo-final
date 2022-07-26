@@ -14,18 +14,16 @@ FILE=$1
 
 ONE_VOWEL=()
 
-while read -ra LINE; 
+while read -ra LINE
 do
-    for WORD in "${LINE[@]}";
+    for WORD in "${LINE[@]}"
     do
         if [[ " ${ONE_VOWEL[*]} " =~ " $WORD " ]]; then
             continue
         fi
 
-        if [ ${#WORD} -gt 3 ]
-        then 
-            if [[ $WORD =~ [,.]$ ]]
-            then
+        if [ ${#WORD} -gt 3 ]; then 
+            if [[ $WORD =~ [,.]$ ]]; then
                 WORD=${WORD::-1}
             fi 
 
@@ -35,12 +33,15 @@ do
             ONE_VOWEL+=( $( echo $WORD | grep -vi '[aeiuáéíú0-9]' ) )
             ONE_VOWEL+=( $( echo $WORD | grep -vi '[aeioáéíó0-9]' ) )  
         fi
-    done;
+    done
 done < $FILE
 
+PREV_IFS=$IFS
 IFS=$'\n' ONE_VOWEL_SORTED=($(sort <<<"${ONE_VOWEL[*]}"))
 
 for WORD in ${ONE_VOWEL_SORTED[@]}
 do
     echo $WORD
 done
+
+IFS=$PREV_IFS
