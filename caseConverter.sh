@@ -1,7 +1,6 @@
 #!/bin/bash
 
 FILE=$1
-WORDCHANGED=""
 
 while read -ra LINE; 
 do
