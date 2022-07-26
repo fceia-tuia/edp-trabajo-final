@@ -1,5 +1,12 @@
 #!/bin/bash
 
+### In this script we parse the text entirely to lowercase
+### to make it easier to identify the usage of the same words.
+### Then we declare an associative array (or dictionary) and add
+### each used word as a key with the count of how many times it
+### appears as the value. Finally we sort the dictionary by
+### value and display the first 10 keys
+
 TEXT=$(cat "$1" | tr '[:upper:]' '[:lower:]')
 
 declare -A WORDS
