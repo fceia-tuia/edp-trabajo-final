@@ -1,5 +1,17 @@
 #!/bin/bash
 
+### In this script we prompt the user to select a sentence (O/o)
+### or a paragraph (P/p) and then again to select which position,
+### starting from 0, wants to display. If the user inputs an invalid
+### value (different than O/P/o/p in the first prompt and not a number
+### or number out of range in the second prompt) the program will
+### exit with status code of 1.
+### After selecting a valid value for the first prompt, we split the
+### text into the corresponding elements (paragraphs or sentences), based
+### the selection. Those elements will be placed on an array and with
+### a valid input on the second prompt it will display the value on
+### that position.
+
 echo "Select by sentence (O) or paragraph (P)? "
 read SELECTION
 
