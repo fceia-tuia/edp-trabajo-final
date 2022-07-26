@@ -20,7 +20,7 @@ do
         fi
  
         if [[ $WORD =~ ^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÑ][a-zäëïöüáéíóúáéíóúâêîôûàèìòùñ]+$ ]]; then
-            if [[ " ${NAMES[*]} " =~ " $WORD " ]]; then
+            if [[ "${NAMES[*]}" =~ "$WORD" ]]; then
              continue
             fi
                 
