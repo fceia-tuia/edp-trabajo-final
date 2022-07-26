@@ -11,18 +11,17 @@
 
 FILE=$1
 
-while read -ra LINE; 
+while read -ra LINE
 do
     SENTENCE=""
-    for WORD in "${LINE[@]}";
+    for WORD in "${LINE[@]}"
     do
         WORDCHANGED="" 
-        for (( i=0; i<${#WORD}; i++ )) ; do
-            if [[ ${WORD:$i:1} =~ ^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÑ]+$ ]]
-            then
+        for (( i=0; i<${#WORD}; i++ ))
+        do
+            if [[ ${WORD:$i:1} =~ ^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÑ]+$ ]]; then
                 WORDCHANGED+=$(echo ${WORD:$i:1} | tr '[:upper:]' '[:lower:]')
-            elif  [[ ${WORD:$i:1} =~ ^[a-zäëïöüáéíóúáéíóúâêîôûàèìòùñ]+$ ]]
-            then
+            elif  [[ ${WORD:$i:1} =~ ^[a-zäëïöüáéíóúáéíóúâêîôûàèìòùñ]+$ ]]; then
                 WORDCHANGED+=$(echo ${WORD:$i:1} | tr '[:lower:]' '[:upper:]')
             else
                 WORDCHANGED+=${WORD:$i:1}                
@@ -30,7 +29,7 @@ do
         done
 
         SENTENCE+="$WORDCHANGED "
-    done;
+    done
     echo $SENTENCE >> output.txt
 done < $FILE 
 
