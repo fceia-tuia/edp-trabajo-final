@@ -1,2 +1,6 @@
 text.txt
+<<<<<<< HEAD
 test.sh
+=======
+test.sh
+>>>>>>> main
