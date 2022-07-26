@@ -1,17 +1,20 @@
 #!/bin/bash
 TEXT=$1
 
-for WORD in $TEXT
+while read -ra LINE; 
 do
-    WORD_NORMALIZED=$(echo $WORD | iconv -t ASCII//TRANSLIT)
+    for WORD in "${LINE[@]}";
+    do
+        WORD_NORMALIZED=$(echo $WORD | iconv -t ASCII//TRANSLIT)
 
-    WORD_LOWER=$(echo "$WORD_NORMALIZED" | tr '[:upper:]' '[:lower:]')
+        WORD_LOWER=$(echo "$WORD_NORMALIZED" | tr '[:upper:]' '[:lower:]')
+        
+        REV_STR=$(echo $WORD_LOWER | rev)
     
-    REV_STR=$(echo $WORD_LOWER | rev)
-   
-    if [[ $WORD_LOWER == $REV_STR ]]
-    then
-        echo $WORD 
-    fi
+        if [[ $WORD_LOWER == $REV_STR ]]
+        then
+            echo $WORD 
+        fi
+    done;
 
-done
+done < $TEXT
