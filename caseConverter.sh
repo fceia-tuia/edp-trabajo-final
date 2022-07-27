@@ -30,6 +30,6 @@ do
 
         SENTENCE+="$WORDCHANGED "
     done
-    echo $SENTENCE >> output.txt
+    echo $SENTENCE
 done < $FILE 
 
