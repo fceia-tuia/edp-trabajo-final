@@ -14,7 +14,7 @@ declare -A WORDS
 
 for WORD in $TEXT
 do
-    [ $WORD =~ [0-9] ] && continue
+    [[ $WORD =~ [0-9] ]] && continue
     CHARACTER_COUNT=$(echo -n $WORD | tr -d '.' | wc -m)
 
     [ $CHARACTER_COUNT -ge 4 ] && WORDS[$WORD]=$((${WORDS[$WORD]} + 1))
