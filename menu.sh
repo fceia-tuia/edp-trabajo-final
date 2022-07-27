@@ -6,12 +6,13 @@ PS3='Your choice > '
 CONTINUE=true
 while $CONTINUE
 do
-    select tool in "Word length stats" "Word usage stats" "Find names" "Sentence length stats" \
+    clear
+    select TOOL in "Word length stats" "Word usage stats" "Find names" "Sentence length stats" \
     "Blank lines counter" "Case converter" "Substring Replace" "Block selection" "Palindrome detection" \
-    "One vowel swords" "All uppercase words" "All vowels Words" "Email adress detection" "Integer detection" \
+    "One vowel words" "All uppercase words" "All vowels Words" "Email adress detection" "Integer detection" \
     "Exit"  
     do
-        case $tool in
+        case $TOOL in
         "Word length stats")     
             ./statsWords.sh $TEXT                                                    
             break
@@ -72,8 +73,7 @@ do
         ;;
         "Exit")
             CONTINUE=false
-            break
-            
+            break          
         ;;
         *)
             echo "Invalid entry"
@@ -82,5 +82,8 @@ do
 
         esac
     done
+    echo ""
+    echo "PRESS ENTER TO CONTINUE"
+    read
 done
 
