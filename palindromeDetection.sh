@@ -13,8 +13,7 @@ while read -ra LINE
 do
     for WORD in "${LINE[@]}"
     do
-        if [[ $WORD =~ [,.]$ ]]
-        then
+        if [[ $WORD =~ [,.]$ ]]; then
             WORD=${WORD::-1}
         fi 
         
