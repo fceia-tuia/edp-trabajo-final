@@ -32,7 +32,8 @@ do
 done < $FILE
 
 PREV_IFS=$IFS
-IFS=$'\n' MAIL_ADRESS_SORTED=($(sort <<<"${MAIL_ADRESS[*]}"))
+IFS=$'\n'
+MAIL_ADRESS_SORTED=($(sort <<<"${MAIL_ADRESS[*]}"))
 
 for WORD in ${MAIL_ADRESS_SORTED[@]}
 do

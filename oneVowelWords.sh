@@ -37,7 +37,8 @@ do
 done < $FILE
 
 PREV_IFS=$IFS
-IFS=$'\n' ONE_VOWEL_SORTED=($(sort <<<"${ONE_VOWEL[*]}"))
+IFS=$'\n'
+ONE_VOWEL_SORTED=($(sort <<<"${ONE_VOWEL[*]}"))
 
 for WORD in ${ONE_VOWEL_SORTED[@]}
 do

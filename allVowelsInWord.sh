@@ -35,11 +35,13 @@ do
 done < $TEXT
 
 PREV_IFS=$IFS
-IFS=$'\n' WORDS_WITH_ALL_VOWELS_SORTED=($(sort <<<"${!WORDS_WITH_ALL_VOWELS[*]}"))
+IFS=$'\n'
+WORDS_WITH_ALL_VOWELS_SORTED=($(sort <<<"${!WORDS_WITH_ALL_VOWELS[*]}"))
 
 for KEY in "${WORDS_WITH_ALL_VOWELS_SORTED[@]}"
 do
-    echo "$KEY (${WORDS_WITH_ALL_VOWELS[$KEY]})"
+    echo -n "$KEY"
+	[[ ${WORDS_WITH_ALL_VOWELS[$KEY]} -gt 1 ]] && echo "(${WORDS_WITH_ALL_VOWELS[$KEY]})" || echo ""
 done
 
 IFS=$PREV_IFS

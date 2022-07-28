@@ -30,7 +30,8 @@ do
 done < $FILE
 
 PREV_IFS=$IFS
-IFS=$'\n' NAMES_SORTED=($(sort <<<"${NAMES[*]}"))
+IFS=$'\n'
+NAMES_SORTED=($(sort <<<"${NAMES[*]}"))
 
 for WORD in ${NAMES_SORTED[@]}
 do
