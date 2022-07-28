@@ -2,7 +2,7 @@
 
 ### In this script, first of all we declare an empty associative array to save words and their attributes later.
 ### Next, we use a text from an enter file and read its lines. 
-### Then, we remove the comma and dot that the word could have.
+### Then, we remove the period, comma, colon, semicolon or ellipsis that the word could have.
 ### We evaluate if this word without comma and dot contains all vowels al least once.
 ### If it does, we check if already exists in the associative array. 
 ### If that is the case, we increment by one the value of that key.
@@ -19,7 +19,10 @@ while read -ra LINE
 do
     for WORD in "${LINE[@]}"
     do    
-        if [[ $WORD =~ [,.]$ ]]
+        if [[ $WORD =~ [.]{3}$ ]]
+        then
+            WORD=${WORD::-3}
+        elif [[ $WORD =~ [,\.\;\:]$ ]]
         then
             WORD=${WORD::-1}
         fi 

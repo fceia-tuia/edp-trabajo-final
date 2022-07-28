@@ -1,8 +1,9 @@
 #!/bin/bash
 
 ### In this script, we use an iterative structure to evaluate every word in an entry text.
-### First, we normalize each word. This consists of ignoring all types of accents and save the new value in a variable. 
-### Then, we convert that previously normalized word to lower case.
+### If the word ends in a period, a comma, a colon, a semicolon or an ellipsis, it is removed.
+### Then, we normalize each word. This consists of ignoring all types of accents and save the new value in a variable. 
+### After that, we convert that previously normalized word to lower case.
 ### Next, we save the reverted value of the lower case word into a variable.
 ### Finally, we compare both words, the lower case word and the reversed one, and if they are equals we print the original given word for the current iteration.
 
@@ -13,11 +14,14 @@ while read -ra LINE
 do
     for WORD in "${LINE[@]}"
     do
-        if [[ $WORD =~ [,.]$ ]]
+        if [[ $WORD =~ [.]{3}$ ]]
+        then
+            WORD=${WORD::-3}
+        elif [[ $WORD =~ [,\.\;\:]$ ]]
         then
             WORD=${WORD::-1}
-        fi 
-        
+        fi  
+
         WORD_NORMALIZED=$(echo $WORD | iconv -t ASCII//TRANSLIT)
 
         WORD_LOWER=$(echo "$WORD_NORMALIZED" | tr '[:upper:]' '[:lower:]')
