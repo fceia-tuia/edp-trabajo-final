@@ -20,10 +20,8 @@ while read -ra LINE
 do
     for WORD in "${LINE[@]}"
     do
-        if [[ $WORD =~ ^.*[\.][" "]?$ ]]
-        then
-            if [ $FIRST_ITERATION = true ]
-            then
+        if [[ $WORD =~ ^.*[\.][" "]?$ ]]; then
+            if [ $FIRST_ITERATION = true ]; then
                 SENTENCE_COUNTER=1
                 WORD_ACCUMULATOR=$WORD_COUNTER
                 MOST_WORDS=$WORD_COUNTER
@@ -32,13 +30,11 @@ do
                 continue
             fi
             
-            if [ $WORD_COUNTER -lt $LEAST_WORDS ]
-            then
+            if [ $WORD_COUNTER -lt $LEAST_WORDS ]; then
                 LEAST_WORDS=$WORD_COUNTER
             fi
 
-            if [ $WORD_COUNTER -gt $MOST_WORDS ]
-            then
+            if [ $WORD_COUNTER -gt $MOST_WORDS ]; then
                 MOST_WORDS=$WORD_COUNTER
             fi            
 

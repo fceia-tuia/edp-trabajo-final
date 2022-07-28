@@ -16,18 +16,16 @@ while read -ra LINE
 do
     for WORD in "${LINE[@]}"
     do
-        if [[ $WORD =~ [.]{3}$ ]]
-        then
+        if [[ $WORD =~ [.]{3}$ ]]; then
             WORD=${WORD::-3}
-        elif [[ $WORD =~ [,\.\;\:]$ ]]
-        then
+        elif [[ $WORD =~ [,\.\;\:]$ ]]; then
             WORD=${WORD::-1}
         fi 
 
  
         if [[ $WORD =~ ^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÑ][a-zäëïöüáéíóúáéíóúâêîôûàèìòùñ]+$ ]]; then
             if [[ "${NAMES[*]}" =~ "$WORD" ]]; then
-             continue
+                continue
             fi
                 
             NAMES+=( $WORD )

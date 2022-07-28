@@ -22,11 +22,9 @@ do
             continue
         fi
         
-        if [[ $WORD =~ [.]{3}$ ]]
-        then
+        if [[ $WORD =~ [.]{3}$ ]]; then
             WORD=${WORD::-3}
-        elif [[ $WORD =~ [,\.\;\:]$ ]]
-        then
+        elif [[ $WORD =~ [,\.\;\:]$ ]]; then
             WORD=${WORD::-1}
         fi  
         

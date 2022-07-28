@@ -8,11 +8,7 @@ TEXT=$(cat $1)
 
 for WORD in $TEXT
 do
-    if [[ $WORD =~ [.]{3}$ ]]
-    then
-        WORD=${WORD::-3}
-    elif [[ $WORD =~ [,\.\;\:]$ ]]
-    then
+    if [[ $WORD =~ [,\.\;\:]$ ]]; then
         WORD=${WORD::-1}
     fi 
 

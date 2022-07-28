@@ -21,16 +21,13 @@ while read -ra LINE
 do
     for WORD in "${LINE[@]}"
     do
-        if [[ $WORD =~ [.]{3}$ ]]
-        then
+        if [[ $WORD =~ [.]{3}$ ]]; then
             WORD=${WORD::-3}
-        elif [[ $WORD =~ [,\.\;\:]$ ]]
-        then
+        elif [[ $WORD =~ [,\.\;\:]$ ]]; then
             WORD=${WORD::-1}
         fi 
 
-        if [ $FIRST_ITERATION = true ]
-        then
+        if [ $FIRST_ITERATION = true ]; then
             FIRST_ITERATION=false
             LEAST_CHARACTERS=${#WORD}
             MOST_CHARACTERS=${#WORD}
@@ -38,13 +35,11 @@ do
             continue
         fi
 
-        if [ ${#WORD} -lt $LEAST_CHARACTERS ]
-        then
+        if [ ${#WORD} -lt $LEAST_CHARACTERS ]; then
             LEAST_CHARACTERS=${#WORD}
         fi
         
-        if [ ${#WORD} -gt $MOST_CHARACTERS ]
-        then
+        if [ ${#WORD} -gt $MOST_CHARACTERS ]; then
             MOST_CHARACTERS=${#WORD}
         fi
 
