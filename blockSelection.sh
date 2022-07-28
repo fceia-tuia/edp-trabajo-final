@@ -17,7 +17,8 @@ read SELECTION
 
 SELECTION=$(echo $SELECTION | tr '[:lower:]' '[:upper:]')
 
-[[ $SELECTION -ne "O" || $SELECTION -ne "P" ]] && exit 1
+[[ "$SELECTION" != "O" && "$SELECTION" != "P" ]] && echo "The selection must be O or P (case insensitive)" && exit 1
+
 TEXT=$(cat $1 | sed '/^[[:space:]]*$/d')
 ELEMENTS=()
 case $SELECTION in
@@ -41,8 +42,8 @@ esac
 echo "Position? "
 read POSITION
 
-[[ ! $POSITION =~ ^[0-9]+$ ]] && exit 1
+[[ ! $POSITION =~ ^[0-9]+$ ]] && echo "Position must be an positive integer" && exit 1
 
-[[ $POSITION -ge ${#ELEMENTS[@]} ]] && exit 1
+[[ $POSITION -ge ${#ELEMENTS[@]} ]] && echo "The selected position is larger than the amount of elements" && exit 1
 
 echo ${ELEMENTS[$POSITION]}

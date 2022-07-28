@@ -2,7 +2,7 @@
 
 ### In this script, first of all we declare an empty associative array to save words and their attributes later.
 ### Next, we use a text from an enter file and read its lines. 
-### Then, we remove the comma and dot that the word could have.
+### Then, we remove the period, comma, colon, semicolon or ellipsis that the word could have.
 ### We evaluate if this word without comma and dot contains all vowels al least once.
 ### If it does, we check if already exists in the associative array. 
 ### If that is the case, we increment by one the value of that key.
@@ -19,8 +19,9 @@ while read -ra LINE
 do
     for WORD in "${LINE[@]}"
     do    
-        if [[ $WORD =~ [,.]$ ]]
-        then
+        if [[ $WORD =~ [.]{3}$ ]]; then
+            WORD=${WORD::-3}
+        elif [[ $WORD =~ [,\.\;\:]$ ]]; then
             WORD=${WORD::-1}
         fi 
 
@@ -35,11 +36,13 @@ do
 done < $TEXT
 
 PREV_IFS=$IFS
-IFS=$'\n' WORDS_WITH_ALL_VOWELS_SORTED=($(sort <<<"${!WORDS_WITH_ALL_VOWELS[*]}"))
+IFS=$'\n'
+WORDS_WITH_ALL_VOWELS_SORTED=($(sort <<<"${!WORDS_WITH_ALL_VOWELS[*]}"))
 
 for KEY in "${WORDS_WITH_ALL_VOWELS_SORTED[@]}"
 do
-    echo "$KEY (${WORDS_WITH_ALL_VOWELS[$KEY]})"
+    echo -n "$KEY"
+	[[ ${WORDS_WITH_ALL_VOWELS[$KEY]} -gt 1 ]] && echo "(${WORDS_WITH_ALL_VOWELS[$KEY]})" || echo ""
 done
 
 IFS=$PREV_IFS
