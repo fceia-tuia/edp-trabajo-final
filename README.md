@@ -34,11 +34,11 @@ Al seleccionar esta opción se analizará el texto para luego mostrar las siguie
 
 - La oración más corta
 - La oración más larga
-- La longitud promedio en caracteres de las oraciones
+- La longitud promedio de palabras de las oraciones
 
 ### Opción 5: Blank lines counter
 
-Al seleccionar esta opción se analizará el texte para luego mostrar la cantidad de líneas en blanco que contiene.
+Al seleccionar esta opción se analizará el texto para luego mostrar la cantidad de líneas en blanco que contiene.
 
 ### Opción 6: Case converter
 
@@ -50,7 +50,7 @@ Al seleccionar esta opción se pedira ademas ingresar una cadena a buscar y la c
 
 ### Opción 8: Block selection
 
-Al seleccionar esta opción se pedira ademas seleccionar un elemento que podrá ser oración o parrafo y luego una posición. Se analizará entonces el texto para luego mostrar el elemento seleccionado en la posición seleccionada. If user inputs an invalid value on any prompt, it will show an error message.
+Al seleccionar esta opción se pedira ademas seleccionar un elemento que podrá ser oración o parrafo y luego una posición. Se analizará entonces el texto para luego mostrar el elemento seleccionado en la posición seleccionada. Si el usuario ingresa un valor inválido en cualquier prompt, mostrará un mensaje de error.
 
 ### Opción 9: Palindrome detection
 
