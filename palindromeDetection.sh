@@ -13,6 +13,11 @@ while read -ra LINE
 do
     for WORD in "${LINE[@]}"
     do
+        if [[ $WORD =~ [,.]$ ]]
+        then
+            WORD=${WORD::-1}
+        fi 
+        
         WORD_NORMALIZED=$(echo $WORD | iconv -t ASCII//TRANSLIT)
 
         WORD_LOWER=$(echo "$WORD_NORMALIZED" | tr '[:upper:]' '[:lower:]')
