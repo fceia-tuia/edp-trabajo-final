@@ -22,7 +22,7 @@ done
 
 for WORD in ${!WORDS[@]}
 do
-    echo "$WORD ${WORDS[$WORD]}"
+    echo "$WORD ${WORDS[$WORD]}" | tr -d '.'
 done | sort -rn -k2 | head -n 10 | cut -d " " -f1
 
 exit 0
